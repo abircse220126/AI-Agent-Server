@@ -472,7 +472,6 @@ IMPORTANT:
   `;
 };
 
-
 const getFacebookPrompt = (input) => `
 You are an elite Facebook Ads copywriter and direct-response performance marketer.
 
@@ -593,7 +592,6 @@ OUTPUT FORMAT
 }
 `;
 
-
 const getVariationPrompt = (adData) => `
 You are an elite Facebook Ads copywriter and conversion optimization expert.
 
@@ -704,5 +702,150 @@ OUTPUT FORMAT
 }
 `;
 
+// const getCompetitorUrlPrompt = (data) => `
+// You are a Facebook ads expert.
 
-module.exports = { getPrompt, getFacebookPrompt, getVariationPrompt };
+// Analyze this website content:
+
+// TITLE: ${data.title}
+
+// H1: ${data.h1}
+
+// DESCRIPTION: ${data.description}
+
+// BODY TEXT:
+// ${data.bodyText}
+
+// Your task is to generate:
+
+// 1. Primary Text
+// 2. Headline
+// 3. Description
+// 4. Target Audience
+// 5. Target Age
+// 6. Target Gender
+// 7. Interests
+// 8. Budget Suggestion
+// 9. Image Prompt
+
+// IMPORTANT:
+// Return ONLY valid JSON.
+
+// OUTPUT FORMAT:
+
+// {
+//   "primaryText": "",
+//   "headline": "",
+//   "description": "",
+//   "targetAudience": "",
+//   "targetAge": "",
+//   "targetGender": "",
+//   "interests": "",
+//   "budget": "",
+//   "imagePrompt": ""
+// }
+// `;
+
+const getCompetitorCopyPrompt = (copy) => `
+You are an elite Facebook ads copy analyst.
+
+Analyze this competitor ad copy.
+
+Your task:
+
+1. Detect hook style
+2. Detect emotional trigger
+3. Detect persuasion strategy
+4. Detect CTA strategy
+5. Detect audience intent
+6. Rewrite better version
+
+IMPORTANT:
+Return ONLY valid JSON.
+
+AD COPY:
+${copy}
+
+OUTPUT FORMAT:
+
+{
+  "hookType": "",
+  "emotionalTrigger": "",
+  "ctaStyle": "",
+  "audienceIntent": "",
+  "weakness": "",
+  "betterHeadline": "",
+  "betterPrimaryText": "",
+  "betterCTA": ""
+}
+`;
+
+const getCompetitorUrlPrompt = (websiteData) => {
+  return `
+You are a world-class Facebook Ads strategist, direct-response copywriter, and affiliate marketing expert.
+
+Your job is to analyze the given website content and generate HIGH-CONVERTING Facebook Ads that are extremely relevant to the website.
+
+Think like a professional direct-response marketer.
+
+Focus on:
+- customer psychology
+- emotional pain
+- urgency
+- dream outcome
+- conversion optimization
+- click-through rate
+- emotional triggers
+- buying intent
+- customer desires
+- persuasive marketing angles
+
+Analyze the website carefully and identify:
+- what the product/service is
+- who the ideal customer is
+- what pain points the customer has
+- what transformation or result they want
+- why people would click the ad
+- what emotional hook would work best
+
+WEBSITE DATA:
+${JSON.stringify(websiteData)}
+
+IMPORTANT RULES:
+
+- Ads MUST be highly relevant to the website
+- Use natural and realistic marketing copy
+- Create scroll-stopping headlines
+- Make the ads emotional and persuasive
+- Use direct-response marketing style
+- Do NOT generate generic ads
+- Create image prompts suitable for AI image generation
+- Return ONLY valid JSON
+- Do NOT use markdown
+- Do NOT use backticks
+- Do NOT explain anything
+- JSON must be parsable
+
+RETURN FORMAT:
+
+{
+  "primaryText": "",
+  "headline": "",
+  "description": "",
+  "targetAudience": "",
+  "targetAge": "",
+  "targetGender": "",
+  "interests": [],
+  "budgetSuggestion": "",
+  "imagePrompt": ""
+}
+`;
+};
+
+module.exports = {
+  getPrompt,
+  getFacebookPrompt,
+  getVariationPrompt,
+  getCompetitorUrlPrompt,
+  getCompetitorCopyPrompt,
+};
